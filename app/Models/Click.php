@@ -9,8 +9,6 @@ use Database\Factories\ClickFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property-read int $id
@@ -24,7 +22,9 @@ final class Click extends Model
     use HasFactory;
 
     /**
-     * The links that owns the click.
+     * Get the link that this click belongs to.
+     *
+     * @return BelongsTo<Link, $this>
      */
     public function link(): BelongsTo
     {
