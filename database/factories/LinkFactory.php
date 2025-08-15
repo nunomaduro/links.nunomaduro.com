@@ -20,6 +20,7 @@ final class LinkFactory extends Factory
     {
         return [
             'url' => $this->faker->url(),
+            'slug' => $this->faker->slug(),
         ];
     }
 }

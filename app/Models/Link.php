@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property-read int $id
  * @property-read string $url
+ * @property-read string|null $slug
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at
  */
