@@ -16,7 +16,8 @@ final class LinkController
      */
     public function show(Link $link, CreateClick $action, Request $request): RedirectResponse
     {
-        $action->handle($link, $request);
+        $sessionId = $request->session()->getId() ?? 'anonymous';
+        $action->handle($link, $sessionId);
 
         return redirect()->away($link->url);
     }

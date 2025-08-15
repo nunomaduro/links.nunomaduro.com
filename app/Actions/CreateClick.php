@@ -6,21 +6,19 @@ namespace App\Actions;
 
 use App\Models\Click;
 use App\Models\Link;
-use Illuminate\Http\Request;
 
 final class CreateClick
 {
     /**
      * Create a new click record for the given link.
      */
-    public function handle(Link $link, Request $request): Click
+    public function handle(Link $link, string $sessionId): Click
     {
-        $ipAddress = $request->ip() ?? 'unknown';
-        $ipAddressHash = hash('sha256', $ipAddress);
+        $sessionIdHash = hash('sha256', $sessionId);
 
         $recentClick = Click::query()
             ->where('link_id', $link->id)
-            ->where('ip_address_hash', $ipAddressHash)
+            ->where('session_id_hash', $sessionIdHash)
             ->where('created_at', '>=', now()->subMinutes(5))
             ->first();
 
@@ -29,7 +27,7 @@ final class CreateClick
         }
 
         return $link->clicks()->create([
-            'ip_address_hash' => $ipAddressHash,
+            'session_id_hash' => $sessionIdHash,
         ]);
     }
 }
