@@ -23,6 +23,8 @@ final class Click extends Model
 
     /**
      * Get the link that this click belongs to.
+     *
+     * @return BelongsTo<Link>
      */
     public function link(): BelongsTo
     {

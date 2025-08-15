@@ -24,6 +24,8 @@ final class Link extends Model
 
     /**
      * Get the clicks for this link.
+     *
+     * @return HasMany<Click>
      */
     public function clicks(): HasMany
     {
