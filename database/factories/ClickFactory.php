@@ -19,7 +19,7 @@ final class ClickFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'link_id' => \App\Models\Link::factory(),
         ];
     }
 }
