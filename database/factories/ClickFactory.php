@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Link;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ final class ClickFactory extends Factory
     public function definition(): array
     {
         return [
-            'link_id' => \App\Models\Link::factory(),
+            'link_id' => Link::factory(),
+            'session_id_hash' => $this->faker->sha256(),
         ];
     }
 }

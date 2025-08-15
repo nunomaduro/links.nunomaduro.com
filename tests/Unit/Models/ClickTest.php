@@ -6,7 +6,7 @@ use App\Models\Click;
 use App\Models\Link;
 
 test('to array', function () {
-    $click = Click::factory()->create()->refresh();
+    $click = Click::factory()->create()->fresh();
 
     expect(array_keys($click->toArray()))
         ->toBe([
@@ -14,6 +14,7 @@ test('to array', function () {
             'link_id',
             'created_at',
             'updated_at',
+            'session_id_hash',
         ]);
 });
 

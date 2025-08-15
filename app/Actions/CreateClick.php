@@ -12,8 +12,17 @@ final class CreateClick
     /**
      * Create a new click record for the given link.
      */
-    public function handle(Link $link): Click
+    public function handle(Link $link, string $sessionId): Click
     {
-        return $link->clicks()->create();
+        $sessionIdHash = hash('sha256', $sessionId);
+
+        return Click::query()
+            ->where('link_id', $link->id)
+            ->where('session_id_hash', $sessionIdHash)
+            ->where('created_at', '>=', now()->subMinutes(5))
+            ->firstOrCreate([
+                'link_id' => $link->id,
+                'session_id_hash' => $sessionIdHash,
+            ]);
     }
 }
