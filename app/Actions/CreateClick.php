@@ -15,7 +15,7 @@ final class CreateClick
      */
     public function handle(Link $link, Request $request): Click
     {
-        $ipAddress = $request->ip();
+        $ipAddress = $request->ip() ?? 'unknown';
         $ipAddressHash = hash('sha256', $ipAddress);
 
         $recentClick = Click::query()
