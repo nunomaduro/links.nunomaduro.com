@@ -8,6 +8,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\LinkFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property-read int $id
@@ -20,4 +21,15 @@ final class Link extends Model
 {
     /** @use HasFactory<LinkFactory> */
     use HasFactory;
+
+    /**
+     * The clicks that belong to the link.
+     *
+     * @return HasMany<Click, $this>
+     */
+    public function clicks(): HasMany
+    {
+        return $this->hasMany(Click::class);
+    }
 }
+

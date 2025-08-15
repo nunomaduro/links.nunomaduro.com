@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Link;
 
 it('redirects to the slug url', function () {
