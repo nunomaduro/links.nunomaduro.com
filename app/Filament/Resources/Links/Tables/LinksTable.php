@@ -12,10 +12,15 @@ use Filament\Tables\Table;
 
 final class LinksTable
 {
+    /**
+     * Configure the table with columns, filters, record actions, and toolbar actions.
+     */
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
+                TextColumn::make('slug')
+                    ->searchable(),
                 TextColumn::make('url')
                     ->searchable(),
                 TextColumn::make('created_at')

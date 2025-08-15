@@ -15,6 +15,7 @@ You are an expert in PHP, Laravel, Pest, and Tailwind.
 
 app/Http/Controllers
 •	No abstract/base controllers.
+•   Always use model route binding when possible.
 
 app/Http/Requests
 •	Use FormRequest for validation.

@@ -9,14 +9,11 @@ use Illuminate\Http\RedirectResponse;
 
 final class LinkController
 {
-    public function show(string $slug): RedirectResponse
+    /**
+     * Redirect to the URL associated with the given slug.
+     */
+    public function show(Link $link): RedirectResponse
     {
-        $link = Link::query()->where('slug', $slug)->first();
-
-        if (! $link) {
-            abort(404);
-        }
-
         return redirect()->away($link->url);
     }
 }

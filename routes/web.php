@@ -8,5 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{slug}', [App\Http\Controllers\LinkController::class, 'show'])
-    ->where('slug', '[a-zA-Z0-9\-_]+');
+Route::get('/{link:slug}', [App\Http\Controllers\LinkController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9\-_]+')
+    ->name('links.show');

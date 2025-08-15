@@ -14,18 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('links', function (Blueprint $table): void {
-            $table->string('slug')->unique()->nullable()->after('url');
+            $table->string('slug')->unique()->after('url');
             $table->index('slug');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('links', function (Blueprint $table): void {
-            //
         });
     }
 };

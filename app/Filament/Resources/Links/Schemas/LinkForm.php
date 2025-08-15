@@ -14,8 +14,13 @@ final class LinkForm
         return $schema
             ->components([
                 TextInput::make('url')
-                    ->url()
-                    ->required(),
+                    ->required()
+                    ->unique()
+                    ->url(),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique()
+                    ->rules('alpha_dash'),
             ]);
     }
 }
