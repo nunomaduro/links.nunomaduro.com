@@ -6,7 +6,7 @@ use App\Models\Click;
 use App\Models\Link;
 
 test('to array', function () {
-    $link = Link::factory()->create()->refresh();
+    $link = Link::factory()->create()->fresh();
 
     expect(array_keys($link->toArray()))
         ->toBe([

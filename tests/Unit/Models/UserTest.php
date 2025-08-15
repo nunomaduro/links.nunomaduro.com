@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 
 test('to array', function () {
-    $user = User::factory()->create()->refresh();
+    $user = User::factory()->create()->fresh();
 
     expect(array_keys($user->toArray()))
         ->toBe([

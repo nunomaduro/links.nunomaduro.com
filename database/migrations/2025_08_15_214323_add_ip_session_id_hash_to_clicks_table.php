@@ -11,7 +11,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('clicks', function (Blueprint $table): void {
-            $table->string('ip_address_hash')->nullable()->after('link_id');
+            $table->string('session_id_hash');
         });
     }
 };

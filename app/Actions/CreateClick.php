@@ -16,18 +16,13 @@ final class CreateClick
     {
         $sessionIdHash = hash('sha256', $sessionId);
 
-        $recentClick = Click::query()
+        return Click::query()
             ->where('link_id', $link->id)
             ->where('session_id_hash', $sessionIdHash)
             ->where('created_at', '>=', now()->subMinutes(5))
-            ->first();
-
-        if ($recentClick !== null) {
-            return $recentClick;
-        }
-
-        return $link->clicks()->create([
-            'session_id_hash' => $sessionIdHash,
-        ]);
+            ->firstOrCreate([
+                'link_id' => $link->id,
+                'session_id_hash' => $sessionIdHash,
+            ]);
     }
 }
