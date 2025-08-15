@@ -16,11 +16,11 @@ final class ClickChart extends ChartWidget
         return [
             'datasets' => [[
                 'label' => 'Clicks',
-                'data' => Link::query()->get()->map(fn (Link $link) => $link->clicks()->count())->toArray(),
+                'data' => Link::query()->orderBy('slug')->get()->map(fn (Link $link) => $link->clicks()->count())->toArray(),
                 'backgroundColor' => '#36A2EB',
                 'borderColor' => '#9BD0F5',
             ]],
-            'labels' => Link::query()->pluck('slug')->toArray(),
+            'labels' => Link::query()->orderBy('slug')->pluck('slug')->toArray(),
         ];
     }
 
