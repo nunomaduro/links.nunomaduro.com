@@ -7,15 +7,16 @@ namespace App\Http\Controllers;
 use App\Actions\CreateClick;
 use App\Models\Link;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 final class LinkController
 {
     /**
      * Redirect to the URL associated with the given slug.
      */
-    public function show(Link $link, CreateClick $action): RedirectResponse
+    public function show(Link $link, CreateClick $action, Request $request): RedirectResponse
     {
-        $action->handle($link);
+        $action->handle($link, $request);
 
         return redirect()->away($link->url);
     }

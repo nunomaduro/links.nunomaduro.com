@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property-read int $id
  * @property-read int $link_id
+ * @property-read string|null $ip_address_hash
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at
  */
