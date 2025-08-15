@@ -8,6 +8,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\ClickFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read int $id
@@ -19,4 +20,12 @@ final class Click extends Model
 {
     /** @use HasFactory<ClickFactory> */
     use HasFactory;
+
+    /**
+     * Get the link that this click belongs to.
+     */
+    public function link(): BelongsTo
+    {
+        return $this->belongsTo(Link::class);
+    }
 }
