@@ -25,7 +25,7 @@ final class Link extends Model
     /**
      * Get the clicks for this link.
      *
-     * @return HasMany<Click>
+     * @return HasMany<Click, $this>
      */
     public function clicks(): HasMany
     {
