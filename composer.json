@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "vest-kits/laravel",
+    "name": "nunomaduro/links.nunomaduro.com",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
