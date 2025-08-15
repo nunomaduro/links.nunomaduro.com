@@ -23,7 +23,7 @@ final class Link extends Model
     use HasFactory;
 
     /**
-     * The clicks that belong to the link.
+     * Get the clicks for this link.
      *
      * @return HasMany<Click, $this>
      */
