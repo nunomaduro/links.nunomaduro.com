@@ -14,8 +14,6 @@ final class CreateClick
      */
     public function handle(Link $link): Click
     {
-        return Click::query()->create([
-            'link_id' => $link->id,
-        ]);
+        return $link->clicks()->create();
     }
 }

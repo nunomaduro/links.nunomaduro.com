@@ -12,9 +12,9 @@ it('creates a click record for the given link', function (): void {
 
     $click = $action->handle($link);
 
-    expect($click)->toBeInstanceOf(Click::class);
-    expect($click->link_id)->toBe($link->id);
-    expect($click->exists)->toBeTrue();
+    expect($click)->toBeInstanceOf(Click::class)
+        ->and($click->link_id)->toBe($link->id)
+        ->and($click->exists)->toBeTrue();
 });
 
 it('stores the click in the database', function (): void {

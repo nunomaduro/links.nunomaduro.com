@@ -23,6 +23,9 @@ final class LinksTable
                     ->searchable(),
                 TextColumn::make('url')
                     ->searchable(),
+                TextColumn::make('clicks_count')
+                    ->label('Clicks')
+                    ->counts('clicks'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
