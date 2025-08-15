@@ -22,7 +22,7 @@ final class Click extends Model
     use HasFactory;
 
     /**
-     * Get the link that this click belongs to.
+     * The links that owns the click.
      *
      * @return BelongsTo<Link, $this>
      */

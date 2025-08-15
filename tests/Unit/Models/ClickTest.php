@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Click;
+use App\Models\Link;
 
 test('to array', function () {
     $click = Click::factory()->create()->refresh();
@@ -14,4 +15,13 @@ test('to array', function () {
             'created_at',
             'updated_at',
         ]);
+});
+
+test('link relationship', function () {
+    $click = Click::factory()->create();
+
+    expect($click->link)
+        ->toBeInstanceOf(Link::class)
+        ->and($click->link->id)
+        ->toBe($click->link_id);
 });
