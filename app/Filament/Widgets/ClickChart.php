@@ -9,18 +9,25 @@ use Filament\Widgets\ChartWidget;
 
 final class ClickChart extends ChartWidget
 {
-    protected ?string $heading = 'Click Chart';
+    protected static ?int $sort = 2;
+
+    protected ?string $heading = 'Clicks per link';
+
+    protected ?string $description = 'Number of clicks per link, ordered by slug.';
 
     protected function getData(): array
     {
+        $links = Link::query()
+            ->withCount('clicks')
+            ->orderBy('slug')
+            ->pluck('clicks_count', 'slug');
+
         return [
             'datasets' => [[
                 'label' => 'Clicks',
-                'data' => Link::query()->orderBy('slug')->get()->map(fn (Link $link) => $link->clicks()->count())->toArray(),
-                'backgroundColor' => '#36A2EB',
-                'borderColor' => '#9BD0F5',
+                'data' => $links->values(),
             ]],
-            'labels' => Link::query()->orderBy('slug')->pluck('slug')->toArray(),
+            'labels' => $links->keys(),
         ];
     }
 
