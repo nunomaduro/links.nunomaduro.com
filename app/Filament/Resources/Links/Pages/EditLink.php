@@ -15,7 +15,12 @@ final class EditLink extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->before(function () {
+                    $this->record
+                        ->clicks()
+                        ->delete();
+                }),
         ];
     }
 }

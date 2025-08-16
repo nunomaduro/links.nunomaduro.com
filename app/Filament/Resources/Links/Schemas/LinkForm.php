@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Links\Schemas;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 final class LinkForm
 {
@@ -16,7 +19,15 @@ final class LinkForm
                 TextInput::make('url')
                     ->required()
                     ->unique()
-                    ->url(),
+                    ->url()
+                    ->autofocus()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (?string $state, Set $set, Get $get) {
+                        if (filled($state) && blank($get('slug'))) {
+                            $slug = Str::before(Str::afterLast($state, 'https://'), '.');
+                            $set('slug', Str::slug($slug));
+                        }
+                    }),
                 TextInput::make('slug')
                     ->required()
                     ->unique()

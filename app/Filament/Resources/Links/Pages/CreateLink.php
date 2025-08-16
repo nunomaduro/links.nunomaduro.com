@@ -10,4 +10,9 @@ use Filament\Resources\Pages\CreateRecord;
 final class CreateLink extends CreateRecord
 {
     protected static string $resource = LinkResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return LinkResource::getIndexUrl();
+    }
 }

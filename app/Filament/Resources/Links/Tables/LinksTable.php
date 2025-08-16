@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Links\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,12 +22,15 @@ final class LinksTable
         return $table
             ->columns([
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('url')
                     ->searchable(),
                 TextColumn::make('clicks_count')
                     ->label('Clicks')
-                    ->counts('clicks'),
+                    ->badge()
+                    ->counts('clicks')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -39,6 +44,11 @@ final class LinksTable
                 //
             ])
             ->recordActions([
+                Action::make('visit')
+                    ->url(fn ($record): string => route('links.show', ['link' => $record->slug]), shouldOpenInNewTab: true)
+                    ->color('gray')
+                    ->icon(Heroicon::ArrowTopRightOnSquare)
+                    ->label('Visit Link'),
                 EditAction::make(),
             ])
             ->toolbarActions([
